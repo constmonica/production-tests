@@ -280,7 +280,7 @@ production() {
 						fi
                         ;;
 				"FMCDAQ3 Test")
-						python3 -m pytest --color yes $SCRIPT_DIR/work/pyadi-iio/test/test_daq3_prod.py -v
+						python3 -m pytest --color yes $SCRIPT_DIR/../work/pyadi-iio/test/test_daq3_prod.py -v
                         if [ $? -ne 0 ]; then
                                 handle_error_state "$BOARD_SERIAL"
                         fi

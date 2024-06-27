@@ -20,11 +20,11 @@ inotifywait -m -e unmount "$mountpoint" | (
     ret=$?
  
     if [ $ret == 0 ];then
-	echo "wget success"
+	    echo "wget success"
         rsync -ah -v --progress $FW_DOWNLOAD_PATH/apard32690.hex $mountpoint
     else
-	echo "wget error"
-	rsync -ah -v --progress /home/analog/production-tests/main_tests/max-arduino/apard32690.hex $mountpoint
+	    echo "wget error"
+	    rsync -ah -v --progress /home/analog/production-tests/main_tests/max-arduino/apard32690.hex $mountpoint
     fi
 
     sync

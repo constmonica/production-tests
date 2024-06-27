@@ -10,8 +10,7 @@ MODE="$1"
 case $MODE in
             "Firmware and memory test")
             echo_blue "Programming production test firmware..."
-            # $SCRIPT_DIR/firmware_prod.sh &&
-            # $SCRIPT_DIR/check_fw.sh &&
+            $SCRIPT_DIR/firmware_prod.sh &&
             echo_blue "Memory testing..."
             tty=/dev/ttyACM0
 			stty -F $tty 115200
@@ -37,6 +36,9 @@ case $MODE in
             ;;
 
             "WI-FI Flash Test")
+            read -p "Connect P55 and P50 on position 2-3 and press 'ENTER'"
+            $SCRIPT_DIR/gpio_control.sh
+            read -p "Connect P56 and P50 on position 1-2 and press 'ENTER'"
             $SCRIPT_DIR/wifi_chip_flash.sh
             $SCRIPT_DIR/check_wifi.sh
             ;;

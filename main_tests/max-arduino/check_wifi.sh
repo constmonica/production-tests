@@ -10,7 +10,7 @@ exec 4<$tty 5>$tty
 
 read -p "Press the reset button on the board then press ENTER"
 
-if timeout 5 cat $tty | tee output.txt | grep -q -A2 "2.4.0"; then
+if timeout 10 cat $tty | tee output.txt | grep -q -A2 "2.4.0"; then
     echo_green "PASSED"
 else
     echo_red "FAILED"

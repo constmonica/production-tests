@@ -394,6 +394,11 @@ dhcp-range=192.168.0.100,192.168.0.150,24h
 
 
 ## Board Function Area ##
+
+setup_T1L-2-USB() {
+	:
+}
+
 setup_EV-CHARGER() {
 	sudo apt-get install inotify-tools
 	sudo apt install rsync 

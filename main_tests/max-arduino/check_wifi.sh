@@ -8,7 +8,7 @@ tty=/dev/ttyACM0
 stty -F $tty 115200
 exec 4<$tty 5>$tty
 
-read -p "Press the reset button on the board then press ENTER"
+read -p "Disconnect P57 jumper. Press the reset button on the board then press ENTER"
 
 if timeout 10 cat $tty | tee output.txt | grep -q -A2 "2.4.0"; then
     echo_green "PASSED"
@@ -22,4 +22,4 @@ if [ "$RESULT" -ne 0 ]; then
 fi
 
 
-# rm -rf output.txt
+rm -rf output.txt

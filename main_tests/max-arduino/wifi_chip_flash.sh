@@ -9,6 +9,6 @@ SCRIPT_DIR="$(readlink -f $(dirname $0))"
 
 echo "Enter download mode"
 echo blue "Connect P50 and P55 jumpers on position 1-2 \n Disconnect P38, P56 jumpers"
-read -p "Press reset button on the board. Press 'ENTER' when done."
+read -p "Connect P57 jumper. Press reset button on the board. Press 'ENTER' when done."
 cd $SCRIPT_DIR/ESP-WROOM-32-AT-NINA-W102 &&
 esptool.py --chip auto --port /dev/ttyACM0 --baud 115200 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size 4MB 0x8000 partition_table/partition-table.bin 0x10000 ota_data_initial.bin 0xf000 phy_multiple_init_data.bin 0x1000 bootloader/bootloader.bin 0x100000 esp-at.bin 0x20000 at_customize.bin 0x24000 customized_partitions/server_cert.bin 0x26000 customized_partitions/server_key.bin 0x28000 customized_partitions/server_ca.bin 0x2a000 customized_partitions/client_cert.bin 0x2c000 customized_partitions/client_key.bin 0x2e000 customized_partitions/client_ca.bin 0x37000 customized_partitions/mqtt_cert.bin 0x39000 customized_partitions/mqtt_key.bin 0x3B000 customized_partitions/mqtt_ca.bin 0x30000 customized_partitions/factory_param.bin

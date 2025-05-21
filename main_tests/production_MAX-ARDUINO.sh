@@ -13,7 +13,7 @@ source $SCRIPT_DIR/lib/production.sh
 source $SCRIPT_DIR/lib/utils.sh
 
 while true; do
-	echo_blue "Please enter your choice: "
+	echo_blue "[REV E APARD] Please enter your choice: "
 	options=("Firmware and memory test" "System Test" "WI-FI Flash Test" "Power-Off Pi")
 	select opt in "${options[@]}"; do
     		case $REPLY in

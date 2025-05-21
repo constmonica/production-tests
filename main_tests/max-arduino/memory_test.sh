@@ -8,7 +8,7 @@ ret=0
 tty=/dev/ttyACM0
 #stty -F $tty 115200
 #exec 4<$tty 5>$tty
-test_names=("[1] UART test" " [2] MAXQ1065 ping" " [3] RAM chip 1" " [4] RAM chip 2" " [5] Flash chip")
+test_names=("UART test" "MAXQ1065 ping" "RAM chip 1" "RAM chip 2" "Flash chip")
 
 while [ "$first_word" != "IP" ]; do
     read -e output < $tty &> /dev/null

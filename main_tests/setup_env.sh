@@ -394,6 +394,9 @@ dhcp-range=192.168.0.100,192.168.0.150,24h
 
 
 ## Board Function Area ##
+setup_GMSL716MIPI() {
+	:
+}
 
 setup_T1L-2-USB() {
 	:

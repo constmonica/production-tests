@@ -394,6 +394,20 @@ dhcp-range=192.168.0.100,192.168.0.150,24h
 
 
 ## Board Function Area ##
+setup_APARD-SPOE(){
+	:
+}
+
+setup_RPIPLCPSE(){
+	:
+}
+setup_APARD-PFWD() {
+	:
+}	
+
+setup_GMSL716MIPI() {
+	:
+}
 setup_ETH2GMSL() {
 	# ADD MARVEL DRIVER 
 	#SCP -R ~production-tests analog@kria-gmsl.local:/home/analog

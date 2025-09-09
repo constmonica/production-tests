@@ -37,6 +37,8 @@ case $MODE in
             ;;
 
             "WI-FI Flash Test")
+            read -p "Connect P55, P50 on position 2-3 and press 'ENTER'"
+            $SCRIPT_DIR/gpio_control.sh
             read -p "Connect P56 and P50 on position 1-2 and press 'ENTER'"
             $SCRIPT_DIR/wifi_chip_flash.sh
             $SCRIPT_DIR/check_wifi.sh

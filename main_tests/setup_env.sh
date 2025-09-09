@@ -394,6 +394,10 @@ dhcp-range=192.168.0.100,192.168.0.150,24h
 
 
 ## Board Function Area ##
+setup_ETH2GMSL() {
+	# ADD MARVEL DRIVER 
+	#SCP -R ~production-tests analog@kria-gmsl.local:/home/analog
+}
 
 setup_T1L-2-USB() {
 	:

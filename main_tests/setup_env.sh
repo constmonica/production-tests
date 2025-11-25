@@ -394,6 +394,14 @@ dhcp-range=192.168.0.100,192.168.0.150,24h
 
 
 ## Board Function Area ##
+
+setup_PQM() {
+	sudo apt-get install inotify-tools
+	sudo apt install rsync
+}
+
+
+
 setup_ARDUINO-HELPKIT() {
 	:
 }

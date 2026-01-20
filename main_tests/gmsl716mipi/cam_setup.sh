@@ -6,6 +6,9 @@ set -e  # Exit on any error
 CAM0_GPIO=34
 CAM1_GPIO=46
 
+# Deser model (716 or 792)
+DESER=792
+
 # Overlay directory
 OVERLAY_DIR="/sys/kernel/config/device-tree/overlays/gmsl"
 
@@ -50,11 +53,11 @@ fi
 case "$1" in
     CAM0)
         clear_gpios
-        apply_overlay $CAM0_GPIO "/boot/overlays/gmsl-cam0.dtbo"
+        apply_overlay $CAM0_GPIO "/boot/overlays/gmsl-${DESER}-cam0.dtbo"
         ;;
     CAM1)
         clear_gpios
-        apply_overlay $CAM1_GPIO "/boot/overlays/gmsl-cam1.dtbo"
+        apply_overlay $CAM1_GPIO "/boot/overlays/gmsl-${DESER}-cam1.dtbo"
         ;;
     *)
         usage

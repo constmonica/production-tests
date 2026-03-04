@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ANSWER=1
 
 SCRIPT_DIR="$(readlink -f $(dirname $0))"

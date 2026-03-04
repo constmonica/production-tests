@@ -56,16 +56,3 @@ case $MODE in
                 exit 1
                 ;;
 esac
-                echo_blue "Running LED and current check"
-                $SCRIPT_DIR/system_check.sh || {
-                        echo_red "FAILED"
-                        handle_error_state "$BOARD_SERIAL"
-                        exit 1
-                }
-                ;;
-
-        *)
-                echo "Invalid option $MODE"
-                exit 1
-                ;;
-esac

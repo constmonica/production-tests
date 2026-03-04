@@ -1,3 +1,8 @@
+#!/bin/bash
+SCRIPT_DIR="$(readlink -f $(dirname $0))"
+
+source $SCRIPT_DIR/../lib/utils.sh
+
 ifconfig eth1 up
 ip addr add 169.254.97.30/24 dev eth1 || true
 sleep 2

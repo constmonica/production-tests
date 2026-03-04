@@ -16,15 +16,15 @@ case $MODE in
         $SCRIPT_DIR/60ghz-conn_test.sh; 
         TEST_RESULT=$?
         if [ $TEST_RESULT -ne 0 ]; then
-            handle_error_state "BOARD_SERIAL"
+            handle_error_state "$BOARD_SERIAL"
             exit 1;
         fi
         ;;
 
     "ADMV96x5 Test")
         echo_blue "Programming final firmware"
-        $SCRIPT_DIR/firmware_p.sh &&
-        $SCRIPT_DIR/led_test.sh &&
+        $SCRIPT_DIR/firmware_p.sh || { handle_error_state "$BOARD_SERIAL"; exit 1; }
+        $SCRIPT_DIR/led_test.sh || { handle_error_state "$BOARD_SERIAL"; exit 1; }
         sudo $SCRIPT_DIR/check_fw.sh &&
         $SCRIPT_DIR/60ghz_attr_test.sh
         TEST_RESULT=$?
@@ -67,6 +67,9 @@ case $MODE in
 		fi
         ;;
         
-    *) echo "Invalid option $MODE" ;;
+    *)
+        echo "Invalid option $MODE"
+        exit 1
+        ;;
 
 esac

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 SCRIPT_DIR="$(readlink -f $(dirname $0))"
 source $SCRIPT_DIR/lib/production.sh

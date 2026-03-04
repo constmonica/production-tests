@@ -4,7 +4,7 @@ echo "Ping test in 5s ..."
 
 sleep 5
 
-ping -c3 169.254.97.40
+ping -c3 192.168.97.40
 if [ $? -eq 0 ]; then
     RESULT=0;
     exit 0;

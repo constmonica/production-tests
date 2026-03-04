@@ -1,3 +1,5 @@
+#!/bin/bash
+
 hmc7044_spi=`ls /sys/bus/spi/drivers/hmc7044/ | grep spi`
 ad9545_spi=`ls /sys/bus/spi/drivers/ad9545/ | grep spi`
 

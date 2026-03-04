@@ -52,5 +52,7 @@ case $MODE in
         fi
         ;;
 
-    *) echo "Invalid option $MODE" ;;
+    *) echo "Invalid option $MODE"
+       exit 1
+       ;;
 esac

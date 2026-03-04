@@ -573,3 +573,71 @@ setup_disable_sudo_passwd() {
 		fi
 	EOF
 }
+
+#----------------------------------#
+# Firmware Flashing using Daplink  #
+#----------------------------------#
+
+# Flash firmware using Daplink programmer
+# Usage flash_firmware.sh /path/to/firmware.hex
+# Returns 0 on success, 1 on failure
+
+flash_firmware(){
+    local hex_file="$1"
+    local timeout="${2:-30}"
+
+    if [ ! -f "$hex_file" ]; then
+        echo_red "Error: Firmware file not found: $hex_file"
+        return 1
+    fi
+
+    local daplink_mount
+    daplink_mount=$(ls -d /media/analog/DAPLINK* 2>/dev/null | sort -V | tail -n 1)
+
+    if [ -z "$daplink_mount" ]; then
+        echo_red "Error: Daplink mount point not found."
+        return 1
+    fi
+
+    echo_blue "Flashing firmware to $daplink_mount"
+    echo_blue "Firmware: $(basename "$hex_file")"
+
+    # Start monitoring for unmount and copy file
+    inotifywait -m -e unmount "$daplink_mount" 2>/dev/null | (
+        rsync -ah --progress "$hex_file" "$daplink_mount/"
+        sync
+
+        while read -r directory event filename; do
+            echo_blue "DAPLINK unmounted, waiting for remount..."
+            local start_time=$(date +%s)
+
+            while true; do
+                if mountpoint -q "$daplink_mount" 2>/dev/null; then
+                    echo_blue "DAPLINK remounted"
+                    pkill -P $$ inotifywait 2>/dev/null
+                    break
+                fi
+
+                local elapsed=$(($(date +%s) - start_time))
+                if [ "$elapsed" -ge "$timeout" ]; then
+                    echo_red "Timeout: DAPLINK did not remount within ${timeout}s"
+                    pkill -P $$ inotifywait 2>/dev/null
+                    break
+                fi
+                sleep 1
+            done
+        done
+    )
+
+    # Check for failure
+    sleep 1 
+    if [ -f "${daplink_mount}/FAIL.TXT" ] || [ -f "${daplink_mount}/FAIL.txt" ]; then
+        echo_red "FAILED - DAPLINK reported error:"
+        cat "${daplink_mount}/FAIL.TXT" "${daplink_mount}/FAIL.txt" 2>/dev/null
+        return 1
+    fi
+
+    echo_green "Firmware flash successful"
+    return 0
+
+}

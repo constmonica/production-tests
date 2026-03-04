@@ -18,7 +18,7 @@ case $MODE in
             ssh_cmd "sudo ~/production-tests/main_tests/eth2gmsl/uart_pins.sh"
             TEST_RESULT=$?
             if [ $TEST_RESULT -ne 0 ]; then
-                handle_error_state "BOARD_SERIAL"
+                handle_error_state "$BOARD_SERIAL"
                 exit 1;
             fi
             ;;
@@ -34,7 +34,7 @@ case $MODE in
             $SCRIPT_DIR/open_frame_p2.sh
             TEST_RESULT=$?
             if [ $TEST_RESULT -ne 0 ]; then
-                handle_error_state "BOARD_SERIAL"
+                handle_error_state "$BOARD_SERIAL"
                 exit 1;
             fi
             ;;
@@ -51,12 +51,14 @@ case $MODE in
             $SCRIPT_DIR/open_frame_p1.sh
             TEST_RESULT=$?
             if [ $TEST_RESULT -ne 0 ]; then
-                handle_error_state "BOARD_SERIAL"
+                handle_error_state "$BOARD_SERIAL"
                 exit 1;
             fi
             ;;
 
 
-            *) echo "Invalid option $MODE" ;;
+            *) echo "Invalid option $MODE" 
+               exit 1
+            ;;
 
 esac

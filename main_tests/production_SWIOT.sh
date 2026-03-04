@@ -18,17 +18,17 @@ while true; do
 	select opt in "${options[@]}"; do
     		case $REPLY in
 			1)
-				echo_blue "Starting Memory/MAXQ1065 tests"
+				echo_blue "Memory/MAXQ1065 tests"
 				production "crr" "$opt" "SWIOT"
 				break ;;
 
 			2)
-				echo_blue "Starting AD74413R/MAX14906 tests"
+				echo_blue "AD74413R/MAX14906 tests"
 				production "crr" "$opt" "SWIOT"
 				break ;;
 
 			3)
-				echo_blue "Starting Program final firmware"
+				echo_blue "Program final firmware"
 				production "crr" "$opt" "SWIOT"
 				break ;;
 			
@@ -38,6 +38,7 @@ while true; do
 				poweroff
 				break 2 ;;
 			*) echo "invalid option $REPLY";;
+			
     		esac
 	done
 done

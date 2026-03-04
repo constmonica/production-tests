@@ -1,4 +1,4 @@
-#!/bin//bash 
+#!/bin/bash 
 
 SCRIPT_DIR="$(readlink -f $(dirname $0))"
 
@@ -44,6 +44,8 @@ case $MODE in
             $SCRIPT_DIR/check_wifi.sh
             ;;
 
-            *) echo "Invalid option $MODE" ;;
+            *) echo "Invalid option $MODE" 
+            exit 1 
+            ;;
 
 esac

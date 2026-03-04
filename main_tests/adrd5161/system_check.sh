@@ -42,4 +42,4 @@ check_display
 
     if [ $RESULT -ne 0 ]; then
         exit 1;
-    f
+    fi

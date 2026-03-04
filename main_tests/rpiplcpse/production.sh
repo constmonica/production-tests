@@ -1,4 +1,4 @@
-#!/bin//bash
+#!/bin/bash
 
 SCRIPT_DIR="$(readlink -f $(dirname $0))"
 
@@ -16,6 +16,8 @@ case $MODE in
             fi
             ;;
 
-            *) echo "Invalid option $MODE" ;;
+            *) echo "Invalid option $MODE" 
+               exit 1
+            ;;
 
 esac

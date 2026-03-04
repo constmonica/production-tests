@@ -17,16 +17,16 @@ while true; do
         case $REPLY in
 
         1)
-			echo_blue "Starting Provisioning"
+			echo_blue "Provisioning"
 			production "crr" "$opt" "60GHZ"
 			break ;;
         
         2)  
-            echo_blue "Starting ADMV96x5 Test"
+            echo_blue "ADMV96x5 Test"
 			production "crr" "$opt" "60GHZ"
 			break ;;
         3)  
-            echo_blue "Starting Networking Test"
+            echo_blue "Networking Test"
 			production "crr" "$opt" "60GHZ"
 			break ;;
         

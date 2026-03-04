@@ -19,6 +19,8 @@ case $MODE in
         $SCRIPT_DIR/led_test.sh
         ;;
 
-    *) echo "Invalid option $MODE" ;;
+    *) echo "Invalid option $MODE"
+       exit 1
+       ;;
 
 esac

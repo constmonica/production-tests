@@ -18,7 +18,7 @@ jobs:
         run: |
           if find main_tests -name "*.sh" -type f ! -perm -u=x | read; then
             echo "Some scripts are not executable"
-            # exit 1
+            exit 1
           else
             echo "All shell scripts are executable"
           fi

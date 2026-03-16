@@ -16,12 +16,15 @@ jobs:
     
       - name: Check shell scripts are executable
         run: |
-          if find main_tests -name "*.sh" -type f ! -perm -u=x | read; then
-            echo "Some scripts are not executable"
-            exit 1
-          else
-            echo "All shell scripts are executable"
-          fi
+            files=$(find main_tests -name "*.sh" -type f ! -perm -u=x)                                                                                                                     
+            if [ -n "$files" ]; then
+              echo "The following scripts are not executable:"
+              echo "$files"
+              exit 1
+            else
+              echo "All shell scripts are executable"
+            fi
+
 
       - name: Check shell scrips for carriage returns
         run: |
